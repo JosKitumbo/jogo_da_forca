@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1714740747 source:c:\users\josek\onedrive\ambiente de trabalho\jogo da forca\jogo_forca\main.cpp
+	<iostream>
+	<string.h>
+
