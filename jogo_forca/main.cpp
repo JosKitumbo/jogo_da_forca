@@ -2,9 +2,9 @@
 #include <string.h>
 using namespace std;
 
-void name_player()
+void name_player( ) //name
 {
-    char name[10];
+   char name[10];
     cout<< " qual o seu nome ? ";
     cin>>name;
     for( int i=0; i<strlen(name); i++)
@@ -15,9 +15,14 @@ void name_player()
 }
 
 
-void word()
+void word()// colocando as palavras e verificando se são semelhantes ou não
 {
-    char palavra[10];
+    bool iguais=true;
+    bool iguais_letra=false;
+    int contagem=0;
+    char palavra[10];//palavra a ser encontrada
+    char palavra_player[10];
+    char letra;//jogada
     cout<<" Seja bem vindo ao jogo da forca " <<endl;
     do
     {
@@ -43,20 +48,94 @@ void word()
     }
 
 
+//player guessing the letters
+   do
+    {
+        cout<<" entre letras da palavra "<<endl;
+        do{
+
+        cin>>letra;
+        cout<<endl;
+            for(int i=0; i<=strlen(palavra); i++)
+            {
+
+                if(palavra[i]==letra)
+                {
+                    cout<< " a letra " << letra << " esta na palavra na posicao " << i <<endl;
+                    palavra_player[i]=letra;
+                    iguais_letra=true;
+
+
+                }
+
+            }
+
+            if(iguais_letra==true)
+            {
+                cout<<" esta letra esta presente na palavra" <<endl;
+            }
+            else
+            {
+                cout<<" esta letra nao esta presente na palavra" <<endl;
+                contagem++;
+
+            }
+            if(contagem==7)
+            {
+                cout<<"tentativas esgotadas " <<endl;
+                break;
+            }
+                for(int i=0; i<=strlen(palavra); i++)
+            {
+                cout<<palavra_player[i]<<endl;
+            }
+
+        }while(strlen(palavra_player)+1!=strlen(palavra));
+
+
+        if(strlen(palavra_player)==strlen(palavra))
+        {
+            cout<<"numero de letras suficiente"<<endl;
+        }
+        else
+         {
+            cout<<" erro no numero de lettras "<<endl;
+        }
+
+        cout<<endl;
+
+    }while(strlen(palavra_player)!=strlen(palavra));
+
+        for(int i=0; i<strlen(palavra); i++)
+    {
+           if(palavra_player[i]!=palavra[i])
+             {
+                 iguais=false;
+                 break;
+             }
+
+
+    }
+
+    cout<<endl;
+
+
+   if(iguais==false)
+   {
+       cout<<" voce perdeu ";
+   }
+   else
+    cout<<" voce ganhou ";
+
+
+
+
 }
 
-void word_guess()
-{
-    word();
-    char palavra_player[10];
-    cin>>palavra_player[10];
-   int i;
 
 
-
-
-}
 int main()
 {
+
     word();
 }
