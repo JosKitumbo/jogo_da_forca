@@ -76,20 +76,34 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
 
                 for (int i=1; i<=7; i++)
-                {   cout<<" numero de tentativas: " <<tentativa<<"/7"<<endl;
+                {
+
                     cin>>letra;
                     bool iguais_letra=false;
                     for(int j=0; j<strlen(palavra); j++)
                   {
-                    if(palavra[j]==letra)
+                      if(letra==palavra_player[j])
+                            {
+                                cout<<"letra repetida"<<endl;
+                            }
+
+                    if(palavra[j]==letra )
                         {
+
+
                             cout<< " a letra " << letra << " esta na palavra na posicao " << j+1 <<endl;
                             palavra_player[indice_letras++]=letra;
                             iguais_letra=true;
+                            cout<<"repetida"<<endl;
+
                             break;
 
                         }
+
+
+
                   }
+                  cout<<contagem;
 
                     if(iguais_letra==true)
                         {
@@ -100,7 +114,7 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
                         {
                             cout<<" esta letra nao esta presente na palavra" <<endl;
                              tentativa++;
-                             contagem++;
+
 
                         }
                     if(indice_letras==strlen(palavra))
@@ -111,7 +125,7 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
                 }
 
-            if(contagem==7)//perder por tentativas esgotadas
+            if(tentativa==7)//perder por tentativas esgotadas
                 {
                     break;//sair da boucle(quebrar ela)
                 }
@@ -136,8 +150,15 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
             }
 
         else
-        {
-            cout<<" tentativas esgotadas "<<" voce perdeu "<<endl;
+        {   cout<<" tentativas esgotadas "<<" voce perdeu "<<endl;
+            cout<<" a palavra e: ";
+            for(int i=0; i<strlen(palavra); i++)
+                {
+                    palavra_player[i]=palavra[i];
+                    cout<<palavra_player[i];
+
+                }
+
         }
 
 
