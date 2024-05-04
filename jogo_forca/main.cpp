@@ -18,8 +18,8 @@ void name_player( ) //name
 void word()// colocando as palavras e verificando se são semelhantes ou não
 {
     bool iguais=true;
-    bool iguais_letra=false;
-    int contagem=0;
+    int indice_letras=0;
+    int contagem=1;
     char palavra[10];//palavra a ser encontrada
     char palavra_player[10];
     char letra;//jogada
@@ -48,85 +48,79 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
     }
 
 
-//player guessing the letters
-   do
-    {
-        cout<<" entre letras da palavra "<<endl;
-        do{
+ cout<<" entre letras da palavra "<<endl;//momento do jogador;
+   do{
 
-        cin>>letra;
-        cout<<endl;
-            for(int i=0; i<=strlen(palavra); i++)
-            {
 
-                if(palavra[i]==letra)
+                for (int i=1; i<=7; i++)
+                { cout<<" tentativa " <<i<<endl;
+                    cin>>letra;
+                    contagem++;
+                    cout<<" contagem " <<contagem<<endl;
+
+               bool iguais_letra=false;
+                 for(int j=0; j<strlen(palavra); j++)
+                  {
+
+                if(palavra[j]==letra)
                 {
                     cout<< " a letra " << letra << " esta na palavra na posicao " << i <<endl;
-                    palavra_player[i]=letra;
+                    palavra_player[indice_letras++]=letra;
                     iguais_letra=true;
-
+                    break;
 
                 }
 
-            }
 
-            if(iguais_letra==true)
-            {
-                cout<<" esta letra esta presente na palavra" <<endl;
-            }
-            else
-            {
+                  }
+                  cout<<" indice letra "<<indice_letras <<endl;
+
+                if(iguais_letra==true)
+                {
+                    cout<<" esta letra esta presente na palavra" <<endl;
+                    break;
+                }
+                else
+                {
                 cout<<" esta letra nao esta presente na palavra" <<endl;
-                contagem++;
 
-            }
-            if(contagem==7)
+                }
+                if(indice_letras==strlen(palavra))
             {
-                cout<<"tentativas esgotadas " <<endl;
                 break;
             }
-                for(int i=0; i<=strlen(palavra); i++)
-            {
-                cout<<palavra_player[i]<<endl;
+
+
             }
 
-        }while(strlen(palavra_player)+1!=strlen(palavra));
+           cout<<endl;
+          if(contagem==8)//perder por tentativas esgotadas
+           {
+
+               break;//sair da boucle(quebrar ela)
+           }
 
 
-        if(strlen(palavra_player)==strlen(palavra))
-        {
-            cout<<"numero de letras suficiente"<<endl;
-        }
-        else
-         {
-            cout<<" erro no numero de lettras "<<endl;
-        }
+   }while(indice_letras!=strlen(palavra));
 
-        cout<<endl;
+       cout<<endl;
 
-    }while(strlen(palavra_player)!=strlen(palavra));
 
+
+if(indice_letras!=0)
+{
+    cout<<" voce ganhou "<<endl;
+       cout<<" a palavra e :";
         for(int i=0; i<strlen(palavra); i++)
-    {
-           if(palavra_player[i]!=palavra[i])
-             {
-                 iguais=false;
-                 break;
-             }
+         {
+             palavra_player[i]=palavra[i];
+             cout<<palavra_player[i];
 
+         }
+}
 
-    }
-
-    cout<<endl;
-
-
-   if(iguais==false)
-   {
-       cout<<" voce perdeu ";
-   }
-   else
-    cout<<" voce ganhou ";
-
+else
+     cout<<" tentativas esgotadas "<<" voce perdeu "<<endl;
 
 
 
