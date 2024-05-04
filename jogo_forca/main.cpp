@@ -14,12 +14,14 @@ void name_player( ) //name
 
 }
 
-
+class myclass{
+public:
 void word()// colocando as palavras e verificando se são semelhantes ou não
 {
+
     bool iguais=true;
     int indice_letras=0;
-    int contagem=1;
+    int contagem=0;
     char palavra[10];//palavra a ser encontrada
     char palavra_player[10];
     char letra;//jogada
@@ -53,52 +55,50 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
 
                 for (int i=1; i<=7; i++)
-                { cout<<" tentativa " <<i<<endl;
+                {   cout<<" tentativa " <<i<<endl;
                     cin>>letra;
                     contagem++;
-                    cout<<" contagem " <<contagem<<endl;
 
-               bool iguais_letra=false;
-                 for(int j=0; j<strlen(palavra); j++)
+
+                    bool iguais_letra=false;
+                    for(int j=0; j<strlen(palavra); j++)
                   {
 
-                if(palavra[j]==letra)
-                {
-                    cout<< " a letra " << letra << " esta na palavra na posicao " << i <<endl;
-                    palavra_player[indice_letras++]=letra;
-                    iguais_letra=true;
-                    break;
+                        if(palavra[j]==letra)
+                        {
+                            cout<< " a letra " << letra << " esta na palavra na posicao " << i <<endl;
+                            palavra_player[indice_letras++]=letra;
+                            iguais_letra=true;
+                            break;
 
-                }
+                        }
 
 
                   }
-                  cout<<" indice letra "<<indice_letras <<endl;
+                    cout<<" indice letra "<<indice_letras <<endl;
 
-                if(iguais_letra==true)
-                {
-                    cout<<" esta letra esta presente na palavra" <<endl;
-                    break;
+                    if(iguais_letra==true)
+                        {
+                            cout<<" esta letra esta presente na palavra" <<endl;
+                            break;
+                        }
+                    else
+                        {
+                            cout<<" esta letra nao esta presente na palavra" <<endl;
+
+                        }
+                    if(indice_letras==strlen(palavra))
+                        {
+                            break;
+                        }
+
+
                 }
-                else
+
+            if(contagem==7)//perder por tentativas esgotadas
                 {
-                cout<<" esta letra nao esta presente na palavra" <<endl;
-
+                    break;//sair da boucle(quebrar ela)
                 }
-                if(indice_letras==strlen(palavra))
-            {
-                break;
-            }
-
-
-            }
-
-           cout<<endl;
-          if(contagem==8)//perder por tentativas esgotadas
-           {
-
-               break;//sair da boucle(quebrar ela)
-           }
 
 
    }while(indice_letras!=strlen(palavra));
@@ -107,29 +107,28 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
 
 
-if(indice_letras!=0)
-{
-    cout<<" voce ganhou "<<endl;
-       cout<<" a palavra e :";
-        for(int i=0; i<strlen(palavra); i++)
-         {
-             palavra_player[i]=palavra[i];
-             cout<<palavra_player[i];
+        if(indice_letras!=0)
+            {
+                cout<<" voce ganhou "<<endl;
+                cout<<" a palavra e :";
+                for(int i=0; i<strlen(palavra); i++)
+                {
+                    palavra_player[i]=palavra[i];
+                    cout<<palavra_player[i];
 
-         }
+                }
+            }
+
+        else
+            cout<<" tentativas esgotadas "<<" voce perdeu "<<endl;
+
+
 }
 
-else
-     cout<<" tentativas esgotadas "<<" voce perdeu "<<endl;
-
-
-
-}
-
-
+};
 
 int main()
 {
-
-    word();
+    myclass object;
+    object.word();
 }
