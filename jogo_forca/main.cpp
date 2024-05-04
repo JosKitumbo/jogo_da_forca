@@ -77,16 +77,16 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
                 for (int i=1; i<=7; i++)
                 {
-
                     cin>>letra;
                     bool iguais_letra=false;
                     for(int j=0; j<strlen(palavra); j++)
                   {
-                      if(letra==palavra_player[j])
+                     if(letra==palavra_player[j])
                             {
-                                cout<<"letra repetida"<<endl;
+                                for(int l=0; l<strlen(palavra); l++)
+                                    if(palavra[l]==letra)
+                                cout<<"letra repetida "<<l<<endl;
                             }
-
                     if(palavra[j]==letra )
                         {
 
@@ -94,7 +94,7 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
                             cout<< " a letra " << letra << " esta na palavra na posicao " << j+1 <<endl;
                             palavra_player[indice_letras++]=letra;
                             iguais_letra=true;
-                            cout<<"repetida"<<endl;
+
 
                             break;
 
