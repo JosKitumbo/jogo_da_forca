@@ -2,30 +2,36 @@
 #include <string.h>
 using namespace std;
 
-void name_player( ) //name
+
+
+class myclassgame{
+public:
+
+    void name_player( ) //name
 {
    char name[10];
-    cout<< " qual o seu nome ? ";
+    cout<<" Seja bem vindo ao jogo da forca " <<endl;
+    cout<< " qual o seu nome ? "<<endl;
     cin>>name;
+
     for( int i=0; i<strlen(name); i++)
     {
         cout<<name[i];
     }
+    cout<< " vamos comecar "<<endl;
 
 }
 
-class myclass{
-public:
 void word()// colocando as palavras e verificando se são semelhantes ou não
 {
-
+    name_player( );
     bool iguais=true;
     int indice_letras=0;
     int contagem=0;
     char palavra[10];//palavra a ser encontrada
     char palavra_player[10];
     char letra;//jogada
-    cout<<" Seja bem vindo ao jogo da forca " <<endl;
+
     do
     {
         cout<<"entre uma palavra com pelo menos duas letras"<<endl;
@@ -120,7 +126,10 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
             }
 
         else
+        {
             cout<<" tentativas esgotadas "<<" voce perdeu "<<endl;
+        }
+
 
 
 }
@@ -129,6 +138,6 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
 int main()
 {
-    myclass object;
+    myclassgame object;
     object.word();
 }
