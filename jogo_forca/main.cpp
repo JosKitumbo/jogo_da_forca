@@ -1,11 +1,18 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
+#include <ctime>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 
 
 class myclassgame{
 public:
+
+
 
     void name_player( ) //name
 {
@@ -24,64 +31,65 @@ public:
 
 void word()// colocando as palavras e verificando se são semelhantes ou não
 {
-    name_player( );
+    name_player();
+    int tentativa=1;
     bool iguais=true;
     int indice_letras=0;
     int contagem=0;
     char palavra[10];//palavra a ser encontrada
     char palavra_player[10];
     char letra;//jogada
+         ifstream MyReadFile("palavras.txt.txt");
+         string mytext;
+         int contagem_txt=0;
 
-    do
-    {
-        cout<<"entre uma palavra com pelo menos duas letras"<<endl;
-        cin>>palavra;
-        cout<<endl;
-        if(strlen(palavra)<2)
+        while(MyReadFile>>mytext)
         {
-            cout<<"numero de letras insuficiente"<<endl;
+            contagem_txt++;
+
         }
-        else
-         {
-            cout<<" palavra aceite "<<endl;
+          MyReadFile.close();
+
+         srand(time(NULL));
+       int x = rand()%contagem_txt;
+       ifstream MyReadFile1("palavras.txt.txt");
+
+        for(int i=0; i<=x; i++)
+        {
+            MyReadFile1>>mytext;
+        }
+       MyReadFile1.close();
+       for(int i=0; i<mytext.size(); i++)
+        {
+            palavra[i]=mytext[i];
+
         }
 
-        cout<<endl;
-
-    }while(strlen(palavra)<2);
 
     for(int i=strlen(palavra); i<=strlen(palavra); i++)
     {
         cout<<" a palavra tem " << i << " letras "<<endl;
     }
-
-
+    cout<<endl;
  cout<<" entre letras da palavra "<<endl;//momento do jogador;
-   do{
+ do{
 
 
                 for (int i=1; i<=7; i++)
-                {   cout<<" tentativa " <<i<<endl;
+                {   cout<<" numero de tentativas: " <<tentativa<<"/7"<<endl;
                     cin>>letra;
-                    contagem++;
-
-
                     bool iguais_letra=false;
                     for(int j=0; j<strlen(palavra); j++)
                   {
-
-                        if(palavra[j]==letra)
+                    if(palavra[j]==letra)
                         {
-                            cout<< " a letra " << letra << " esta na palavra na posicao " << i <<endl;
+                            cout<< " a letra " << letra << " esta na palavra na posicao " << j+1 <<endl;
                             palavra_player[indice_letras++]=letra;
                             iguais_letra=true;
                             break;
 
                         }
-
-
                   }
-                    cout<<" indice letra "<<indice_letras <<endl;
 
                     if(iguais_letra==true)
                         {
@@ -91,6 +99,8 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
                     else
                         {
                             cout<<" esta letra nao esta presente na palavra" <<endl;
+                             tentativa++;
+                             contagem++;
 
                         }
                     if(indice_letras==strlen(palavra))
@@ -131,13 +141,14 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
         }
 
 
-
 }
 
 };
 
+
 int main()
 {
     myclassgame object;
-    object.word();
+   object.word();
+
 }

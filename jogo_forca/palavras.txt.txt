@@ -1,4 +1,4 @@
-tempo
+sempre
 vez
 coisa
 homem
@@ -7,15 +7,15 @@ casa
 vida
 morte
 pessoa
-país
+pais
 cidade
-região
+regiao
 estado
 governo
 dia
 noite
 semana
-mês
+mes
 ano
 hora
 minuto
@@ -27,3 +27,4 @@ trabalho
 gente
 mundo
 nome
+
