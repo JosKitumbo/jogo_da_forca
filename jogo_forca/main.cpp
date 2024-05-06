@@ -7,7 +7,7 @@
 #include <time.h>
 using namespace std;
 
-class myclassgame{
+class game{
 public:
 
     void name_player( ) //name
@@ -31,17 +31,17 @@ public:
 
 void word(){// colocando as palavras e verificando se são semelhantes ou não
 
-    name_player();
-    int contagem;
-    int tentativa=1;
-    bool iguais=true;
-    int indice_letras=1;
-    bool sair_boucle=false;
-    bool sair_boucle1=false;
+ name_player();
+ int contagem;
+ int tentativa=1;
+ bool letras_iguais=true;
+ int indice_letras=1;
+ bool sair_boucle=false;
+ bool sair_boucle1=false;
+ char palavra[50];//palavra a ser encontrada
+ char palavra_player[50];
+ char letra;   //jogada
 
-    char palavra[50];//palavra a ser encontrada
-    char palavra_player[50];
-    char letra;   //jogada
          ifstream MyReadFile("palavras.txt.txt");
          string mytext;
          int contagem_txt=0;
@@ -206,7 +206,7 @@ cout<<endl;
 
 int main()
 {
-   myclassgame object;
+   game object;
    object.word();
 
 }
