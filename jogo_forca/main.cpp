@@ -125,6 +125,7 @@ class game{
                     break;
       }else{
             cout<<"Mistake!!" <<endl;
+             cout<<"Queira retentar" <<endl;
             tentativa++;
         }
     if(tentativa==7){//perder por tentativas esgotadas
