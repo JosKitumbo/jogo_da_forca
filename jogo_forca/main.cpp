@@ -6,86 +6,82 @@
 #include <stdlib.h>
 #include <time.h>
 using namespace std;
-
+//JOGO DA FORCA
 class game{
-public:
+ public:
 
-    void name_player( ) //name
-{
-    char name[10];
-    cout<<"Seja bem-vindo ao jogo da forca " <<endl;
-    cout<<"Regras de funcionamento : " ;
-    cout<<"Deves descobrir de qual animal se trata " <<endl;
-    cout<<"Tens direito a primeira letra do animal e a 7 tentativas " <<endl;
-    cout<<"Caso repitas uma mesma letra errada ou certa, as tentativas nao irao diminuir " <<endl;
-    cout<<"Qual seu nome ? "<<endl;
-    cin>>name;
+    void name_player( ) {//name
+      char name[10];
+      cout<<"Seja bem-vindo ao jogo da forca " <<endl;
+      cout<<"Regras de funcionamento : " ;
+      cout<<"Deves descobrir de qual animal se trata " <<endl;
+      cout<<"Tens direito a primeira letra do animal e a 7 tentativas " <<endl;
+      cout<<"Caso repitas uma mesma letra errada ou certa, as tentativas nao irao diminuir " <<endl;
+      cout<<"Qual seu nome ? "<<endl;
+      cin>>name;
 
-    for( int i=0; i<strlen(name); i++)
-    {
+      for( int i=0; i<strlen(name); i++){
         cout<<name[i];
+       }
+      cout<< ", vamos a isso! "<<endl;
     }
-    cout<< ", vamos a isso! "<<endl;
 
-}
+    void word(){// colocando as palavras e verificando se são semelhantes ou não ( toda estrutura do jogo)
+      name_player();
+      int contagem;//contar a ocorrencia de uma variavel
+      int tentativa=1;//variavel para contar quantas tentativas restam
+      bool letras_iguais=true;
+      int indice_letras=1;//para atribuir um indice a uma variavel dentro d
+      bool sair_boucle=false;// sair da boucle mae
+      bool sair_boucle1=false;// sair da boucle mae
+      char palavra[50];//palavra a ser encontrada
+      char palavra_player[50];//grupo de palavras digitadas pelo jogador
+      char letra;   //letra a ser inserida
 
-void word(){// colocando as palavras e verificando se são semelhantes ou não
+      ifstream MyReadFile("palavras.txt.txt");//leitura do ficheiro txt
+      string mytext;
+      int contagem_txt=0;
 
- name_player();
- int contagem;
- int tentativa=1;
- bool letras_iguais=true;
- int indice_letras=1;
- bool sair_boucle=false;
- bool sair_boucle1=false;
- char palavra[50];//palavra a ser encontrada
- char palavra_player[50];
- char letra;   //jogada
-
- ifstream MyReadFile("palavras.txt.txt");
- string mytext;
- int contagem_txt=0;
-
- while(MyReadFile>>mytext){
+      while(MyReadFile>>mytext){
         contagem_txt++;
-    }
- MyReadFile.close();
- srand(time(NULL));
- int x = rand()%contagem_txt;
- ifstream MyReadFile1("palavras.txt.txt");
+      }
+      MyReadFile.close();
+      srand(time(NULL));
+      int x = rand()%contagem_txt;//escolher uma palavra aleatoria
+      ifstream MyReadFile1("palavras.txt.txt");
 
- for(int i=1; i<x; i++){
-      MyReadFile1>>mytext;
-    }
- MyReadFile1.close();
- for(int i=0; i<mytext.size(); i++){
+      for(int i=1; i<x; i++){
+        MyReadFile1>>mytext;
+      }
+      MyReadFile1.close();
+      for(int i=0; i<mytext.size(); i++){
             palavra[i]=mytext[i];
-    }
- cout<<endl;
- cout<<"Um animal de: " << strlen(palavra)<< " letras "<<endl;
+      }
+      cout<<endl;
+      cout<<"Um animal de: " << strlen(palavra)<< " letras "<<endl;
 
- cout<<endl;
- string barras[mytext.size()];
- barras[0]=palavra[0];
- cout<<barras[0]<<" ";
- for(int i=1; i<mytext.size(); i++){
+      cout<<endl;
+      string barras[mytext.size()];
+      barras[0]=palavra[0];
+      cout<<barras[0]<<" ";
+      for(int i=1; i<mytext.size(); i++){
            barras[i]="_";
            cout<<barras[i]<<" ";
-    }
- cout<<endl;
- cout<<"Entre as letras da palavra : "<<endl;//momento do jogador;
-
- do{
-
-
-  for (int i=1; i<=7; i++){
-     contagem=0;
-     cout<<"Tentativas : "<<tentativa<<"/7"<<endl;
+      }
      cout<<endl;
-     char repetir_letra='*';
-     repetir_letra=letra;
-     cin>>letra;
-     if(letra==repetir_letra){
+     cout<<"Entre as letras da palavra : "<<endl;//momento do jogador;
+
+    do{
+
+
+      for (int i=1; i<=7; i++){
+      contagem=0;
+      cout<<"Tentativas : "<<tentativa<<"/7"<<endl;
+      cout<<endl;
+      char repetir_letra='*';
+      repetir_letra=letra;
+      cin>>letra;
+      if(letra==repetir_letra){
             cout<<"Tentou esta letra antes! "<<endl;
             cout<<"Queira refazer ";
             break;
@@ -160,21 +156,22 @@ void word(){// colocando as palavras e verificando se são semelhantes ou não
                 palavra_player[i]=palavra[i];
                 cout<<palavra_player[i];
                 }
-            }else{
-                    cout<<"Tentativas esgotadas "<<". Perdeu!! "<<endl;
-                    cout<<"A palavra era: ";
-                    for(int i=0; i<strlen(palavra); i++){
-                            palavra_player[i]=palavra[i];
-                            cout<<palavra_player[i];
-                      }
-                }
-  }
+            }
+    else{
+         cout<<"Tentativas esgotadas "<<". Perdeu!! "<<endl;
+         cout<<"A palavra era: ";
+         for(int i=0; i<strlen(palavra); i++){
+            palavra_player[i]=palavra[i];
+            cout<<palavra_player[i];
+         }
+       }
+   }
 
 };
 
 int main()
 {
-   game object;
-   object.word();
+   game object_call_game;
+   object_call_game.word();
 
 }
