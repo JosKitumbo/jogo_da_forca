@@ -79,7 +79,6 @@ piranha
 urubu
 vespa
 vibora
-vison
 vombate
 zangao
 sardao

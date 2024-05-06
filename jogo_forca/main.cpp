@@ -7,18 +7,18 @@
 #include <time.h>
 using namespace std;
 
-
-
 class myclassgame{
 public:
 
-
-
     void name_player( ) //name
 {
-   char name[10];
-    cout<<"Seja bem vindo ao jogo da forca (Sobre animais) " <<endl;
-    cout<< "Qual seu nome ? "<<endl;
+    char name[10];
+    cout<<"Seja bem-vindo ao jogo da forca " <<endl;
+    cout<<"Regras de funcionamento : " ;
+    cout<<"Deves descobrir de qual animal se trata " <<endl;
+    cout<<"Tens direito a primeira letra do animal e a 7 tentativas " <<endl;
+    cout<<"Caso repitas uma mesma letra errada ou certa, as tentativas nao irao diminuir " <<endl;
+    cout<<"Qual seu nome ? "<<endl;
     cin>>name;
 
     for( int i=0; i<strlen(name); i++)
@@ -29,19 +29,19 @@ public:
 
 }
 
-void word()// colocando as palavras e verificando se são semelhantes ou não
-{
+void word(){// colocando as palavras e verificando se são semelhantes ou não
+
     name_player();
+    int contagem;
     int tentativa=1;
     bool iguais=true;
-    int indice_letras=0;
+    int indice_letras=1;
     bool sair_boucle=false;
     bool sair_boucle1=false;
-    int terceira_ocorrencia=-1;
-    int segunda_ocorrencia=-1;
-    char palavra[10];//palavra a ser encontrada
-    char palavra_player[10];
-    char letra;//jogada
+
+    char palavra[50];//palavra a ser encontrada
+    char palavra_player[50];
+    char letra;   //jogada
          ifstream MyReadFile("palavras.txt.txt");
          string mytext;
          int contagem_txt=0;
@@ -52,12 +52,11 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
 
         }
           MyReadFile.close();
-
          srand(time(NULL));
        int x = rand()%contagem_txt;
        ifstream MyReadFile1("palavras.txt.txt");
 
-        for(int i=0; i<=x; i++)
+        for(int i=1; i<x; i++)
         {
             MyReadFile1>>mytext;
         }
@@ -67,26 +66,41 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
             palavra[i]=mytext[i];
 
         }
-       cout<<endl;
-        cout<<"A palavra tem " << strlen(palavra)<< " letras "<<endl;
+        cout<<endl;
+        cout<<"Um animal de: " << strlen(palavra)<< " letras "<<endl;
 
+cout<<endl;
+string barras[mytext.size()];
+barras[0]=palavra[0];
+cout<<barras[0]<<" ";
+for(int i=1; i<mytext.size(); i++)
+        {
+           barras[i]="_";
+           cout<<barras[i]<<" ";
+        }
+cout<<endl;
  cout<<"Entre as letras da palavra : "<<endl;//momento do jogador;
  do{
 
-    for (int i=1; i<=7; i++)
-        {    int contagem=0;
-            cout<<"Tentativas : "<<tentativa<<"/7"<<endl;
-            char repetir_letra=letra;
-            cin>>letra;
 
-            if(letra== repetir_letra)
+    for (int i=1; i<=7; i++)
+        {   contagem=0;
+            cout<<"Tentativas : "<<tentativa<<"/7"<<endl;
+            cout<<endl;
+            char repetir_letra='*';
+            repetir_letra=letra;
+            cin>>letra;
+           if(letra==repetir_letra)
             {
                 cout<<"Tentou esta letra antes! "<<endl;
+                cout<<"Queira refazer ";
                 break;
             }
             bool iguais_letra=false;
-            for(int j=0; j<strlen(palavra); j++)
+
+            for(int j=1; j<strlen(palavra); j++)
             {
+
                 if(palavra[j]==letra )
                     {   contagem++;
                         if(contagem==1)
@@ -94,13 +108,18 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
                         cout<< "A letra '" << letra << "' se encontra na posicao " << j+1 <<endl;
                         indice_letras++;
                         palavra_player[indice_letras]=letra;
+                        barras[j]=letra;
                         iguais_letra=true;
+
                         }
                         if(contagem==2)
                         {
-                        cout<< "na posicao " <<j+1 <<endl;
+                        cout<< "aussi na posicao " <<j+1 <<endl;
                         indice_letras++;
                         palavra_player[indice_letras]=letra;
+                        barras[j]=letra;
+
+
                         iguais_letra=true;
                         }
                         if(contagem==3)
@@ -108,10 +127,23 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
                         cout<< "e" << " na palavra na posicao " << j+1 <<endl;
                         indice_letras++;
                         palavra_player[indice_letras]=letra;
+                        barras[j]=letra;
+
                         iguais_letra=true;
+                        }
+
+
                     }
-                    }
+
+
+
             }
+            for(int i=0; i<mytext.size(); i++)
+        {
+
+           cout<<barras[i]<<" ";
+        }
+                  cout<<endl;
             if(iguais_letra==true)
                 {
                     cout<<"Congrats!!" <<endl;
@@ -160,22 +192,21 @@ void word()// colocando as palavras e verificando se são semelhantes ou não
                     cout<<palavra_player[i];
                 }
             }else
-                {   cout<<"Tentativas esgotadas "<<". Perdeu!! "<<endl;
+                {
+                    cout<<"Tentativas esgotadas "<<". Perdeu!! "<<endl;
                     cout<<"A palavra era: ";
                     for(int i=0; i<strlen(palavra); i++){
                             palavra_player[i]=palavra[i];
                             cout<<palavra_player[i];
-                        }
-        }
-
+                      }
+                }
 }
 
 };
 
-
 int main()
 {
-    myclassgame object;
+   myclassgame object;
    object.word();
 
 }
