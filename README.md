@@ -1,2 +1,2 @@
 # jogo_da_forca
-jogo da forca guess the word
+jogo da forca guess the word animais
